@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "//cedricstein.github.io/laurentmartel/static/css/main.073c9b0a.css",
+    "main.js": "//cedricstein.github.io/laurentmartel/static/js/main.4e30e301.js",
+    "static/js/787.bc7d429a.chunk.js": "//cedricstein.github.io/laurentmartel/static/js/787.bc7d429a.chunk.js",
+    "index.html": "//cedricstein.github.io/laurentmartel/index.html",
+    "main.073c9b0a.css.map": "//cedricstein.github.io/laurentmartel/static/css/main.073c9b0a.css.map",
+    "main.4e30e301.js.map": "//cedricstein.github.io/laurentmartel/static/js/main.4e30e301.js.map",
+    "787.bc7d429a.chunk.js.map": "//cedricstein.github.io/laurentmartel/static/js/787.bc7d429a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.4e30e301.js"
+  ]
+}
