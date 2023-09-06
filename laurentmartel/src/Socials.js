@@ -12,7 +12,7 @@ const Socials = () => {
         <Sidebar />
         <ContentDiv>
           <ContentText>Social media</ContentText>
-          <Socials>
+          <SocialsDiv>
             <IconDiv>
               <IconLink
                 href="https://www.tiktok.com/@laurentmartel_"
@@ -31,7 +31,7 @@ const Socials = () => {
                 <Lottie loop={true} animationData={Instagram} />
               </IconLink>
             </IconDiv>
-          </Socials>
+          </SocialsDiv>
         </ContentDiv>
       </Wrapper>
     </>

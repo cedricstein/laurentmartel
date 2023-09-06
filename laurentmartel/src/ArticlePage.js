@@ -1,9 +1,9 @@
+import React, { useState } from "react";
 import {
   Card,
   Image,
   Text,
   Group,
-  Badge,
   createStyles,
   Center,
   Button,
@@ -15,16 +15,56 @@ import {
   IconManualGearbox,
   IconUsers,
 } from "@tabler/icons-react";
-
 import { styled } from "styled-components";
 import Sidebar from "./Sidebar";
+
+// Define your email form component (assuming you have one) here.
+// This component should handle the email form UI and submission.
+
+// For this example, let's create a simple EmailForm component.
+const EmailForm = ({ article, onClose }) => {
+  const [emailContent, setEmailContent] = useState(""); // State to store email content
+
+  const handleSendEmail = () => {
+    // Here, you can implement the logic to send an email with the content.
+    // In this example, we'll just log the email content to the console.
+    console.log("Email content:", emailContent);
+
+    // Close the email form
+    onClose();
+  };
+
+  return (
+    <div className="email-form">
+      <h2>Send an Email</h2>
+      <form>
+        <div>
+          <label htmlFor="emailContent">Email Content:</label>
+          <textarea
+            id="emailContent"
+            value={emailContent}
+            onChange={(e) => setEmailContent(e.target.value)}
+            placeholder="Enter your message here..."
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <button type="button" onClick={handleSendEmail}>
+          Send Email
+        </button>
+        <button type="button" onClick={onClose}>
+          Cancel
+        </button>
+      </form>
+    </div>
+  );
+};
 
 const useStyles = createStyles((theme) => ({
   card: {
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
   },
-
   imageSection: {
     padding: theme.spacing.md,
     display: "flex",
@@ -34,7 +74,6 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
     }`,
   },
-
   label: {
     marginBottom: theme.spacing.xs,
     lineHeight: 1,
@@ -43,14 +82,12 @@ const useStyles = createStyles((theme) => ({
     letterSpacing: rem(-0.25),
     textTransform: "uppercase",
   },
-
   section: {
     padding: theme.spacing.md,
     borderTop: `${rem(1)} solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
     }`,
   },
-
   icon: {
     marginRight: rem(5),
     color:
@@ -76,6 +113,15 @@ export const ArticlePage = ({ article }) => {
     </Center>
   ));
 
+  // Step 1: Create a state variable to control the visibility of the email form
+  const [showEmailForm, setShowEmailForm] = useState(false);
+
+  // Step 2: Function to handle the "Buy now" button click event
+  const handleBuyNowClick = () => {
+    // Toggle the visibility of the email form
+    setShowEmailForm(!showEmailForm);
+  };
+
   return (
     <Wrapper>
       <Sidebar />
@@ -84,7 +130,7 @@ export const ArticlePage = ({ article }) => {
           withBorder
           radius="md"
           className={classes.card}
-          style={{ width: "80%", maxWidth: "800px" }} // Adjust these values as needed
+          style={{ width: "80%", maxWidth: "800px" }}
         >
           <Card.Section className={classes.imageSection}>
             <Image src={article.image} alt="Car" />
@@ -97,14 +143,12 @@ export const ArticlePage = ({ article }) => {
                 {article.title}
               </Text>
             </div>
-            {/* <Badge variant="outline">25% off</Badge> */}
           </Group>
 
           <Card.Section className={classes.section} mt="md">
             <Text fz="sm" c="dimmed" className={classes.label}>
               Features
             </Text>
-
             <Group spacing={8} mb={-8}>
               {features}
             </Group>
@@ -120,14 +164,26 @@ export const ArticlePage = ({ article }) => {
                   USD
                 </Text>
               </div>
-
-              <Button radius="xl" style={{ flex: 1 }}>
+              {/* Step 3: Render the "Buy now" button with onClick event */}
+              <Button
+                radius="xl"
+                style={{ flex: 1 }}
+                onClick={handleBuyNowClick}
+              >
                 Buy now
               </Button>
             </Group>
           </Card.Section>
         </Card>
       </ContentDiv>
+
+      {/* Step 4: Render the email form conditionally */}
+      {showEmailForm && (
+        <EmailForm
+          article={article}
+          onClose={() => setShowEmailForm(false)} // Function to close the email form
+        />
+      )}
     </Wrapper>
   );
 };
